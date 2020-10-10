@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Header, Nav, Body, Footer } from "./templates"
-import { Home, Login } from "./pages"
+import { Home, Login, Contact, Register } from "./pages"
 
 
 class App extends Component {
@@ -8,19 +8,49 @@ class App extends Component {
     super(props);
     this.state = {
       click: true,
-      page: "LOGIN",
+      page: "REGISTER",
+      contacts: [{
+        name: "Admin",
+        phone: "0123456789"
+      }, {
+        name: "User",
+        phone: "1234567890"
+      }]
+
     }
   }
 
-  doLogin = () => {
+  deleteRow = (idx) => {
+    const lastData = this.state.contacts
+    lastData.splice(idx, 1)
     this.setState({
-      page: "HOME"
+      contacts: lastData
+    })
+  }
+
+  updateContacts = data => {
+    let newData = this.state.contacts
+    newData.push(data)
+    this.setState({
+      contacts: newData
+    })
+  }
+
+  goToPage = page => {
+    this.setState({
+      page
     })
   }
 
   showPage = () => {
     if (this.state.page === "LOGIN")
-      return <Login goToHome={this.doLogin} />
+      return <Login goToHome={() => this.goToPage("HOME")} />
+
+    if (this.state.page === "CONTACT")
+      return <Contact contacts={this.state.contacts} deleteRow={this.deleteRow} />
+
+    if (this.state.page === "REGISTER")
+      return <Register updateContacts={this.updateContacts} />
 
     return <Home />
   }
@@ -29,7 +59,7 @@ class App extends Component {
     return (
       <>
         <Header />
-        <Nav />
+        <Nav goToPage={this.goToPage} />
         <Body>
           {
             this.showPage()

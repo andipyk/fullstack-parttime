@@ -15,9 +15,10 @@ class Nav extends Component {
                 justifyContent: "flex-end",
                 marginTop: "10px"
             }}>
-                <Menu>Home</Menu>
-                <Menu>Contact Us</Menu>
-                <Menu>Login</Menu>
+                <Menu onClick={() => this.props.goToPage("HOME")} >Home</Menu>
+                <Menu onClick={() => this.props.goToPage("CONTACT")} >Contact Us</Menu>
+                <Menu onClick={() => this.props.goToPage("LOGIN")} >Login</Menu>
+                <Menu onClick={() => this.props.goToPage("REGISTER")} >Register</Menu>
             </div>
         );
     }

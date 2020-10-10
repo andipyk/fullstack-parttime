@@ -11,8 +11,11 @@ class Menu extends Component {
             <div style={{
                 marginLeft: "10px",
                 padding: "5px 10px",
-                border: "1px solid gray"
-            }}>
+                border: "1px solid gray",
+                cursor: "pointer"
+            }}
+                onClick={this.props.onClick}
+            >
                 {this.props.children}
             </div>
         );

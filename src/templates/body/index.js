@@ -8,9 +8,9 @@ class Body extends Component {
     }
     render() {
         return (
-            <>
+            <div style={{ marginTop: 10 }}>
                 {this.props.children}
-            </>
+            </div>
         );
     }
 }
